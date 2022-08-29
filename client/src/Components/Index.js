@@ -6,16 +6,16 @@ const Index = () => {
     const navigate = useNavigate()
     return(
         <div className="flex flex-col w-full h-screen items-center 
-        justify-center p-10 bg-gradient-to-br from-white via-white to-pink">
+        justify-center p-10">
             <div className="flex items-center gap-x-4">
-                <div className="uppercase text-6xl font-bold 
+                <div className="uppercase text-6xl font-extrabold 
                 text-dark-blue tracking-wider leading-tight">
                     <h1>welcome</h1>
                     <h1>to <span className="text-pink">MomoTalk</span></h1>
                 </div>
 
                 <div className="w-44">
-                    <img clasName="w-full" src={iconHearPink} alt="" />
+                    <img className="w-full" src={iconHearPink} alt="" />
                 </div>
 
             </div>
@@ -23,7 +23,7 @@ const Index = () => {
             <div className="flex items-center gap-x-4">
             <div>
             <div className="max-w-md">
-                <p className="text-dark-blue text-3xl tracking-wide leading-normal">Hang out anytime,
+                <p className="text-dark-blue text-3xl font-semibold tracking-wide leading-normal">Hang out anytime,
                 anywhere <span className="text-pink font-bold">MomoTalk </span>
                 makes it easy and fun to stay close to your favorite 
                 people.
@@ -35,6 +35,7 @@ const Index = () => {
                 rounded-sm w-full p-4 text-xl" onClick={() => {navigate("/login")}}>Login</button>
                 <button className="bg-dark-blue text-white font-bold 
                 rounded-sm w-full p-4 text-xl" onClick={() => {navigate("/signup")}}>Signup</button>
+            
             </div>
             </div>
 
