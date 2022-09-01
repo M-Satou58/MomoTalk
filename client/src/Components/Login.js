@@ -1,4 +1,5 @@
 import React from "react"
+import LoginForm from "./Common/Form/LoginForm.js"
 import bg from "../img/bg/bg-login.png"
 import iconHeartPink from "../img/icons/icon-pink-heart.svg"
 const Login = ({ setEmail, setPassword, handleAction }) => {
@@ -20,21 +21,7 @@ const Login = ({ setEmail, setPassword, handleAction }) => {
                         </p>
                      </div>
 
-                    <div className="flex flex-col mt-8 gap-y-3 max-w-md">
-                        <input className="p-4 text-dark-blue text-2xl font-medium bg-gray
-                        shadow-md rounded-sm focus:outline focus:outline-offset-2 
-                        focus:outline-dark-blue" type="text" placeholder="username" 
-                        onChange={(e) => setEmail(e.target.value)}/>
-
-                        <input className="p-4 text-dark-blue text-2xl font-medium bg-gray
-                        shadow-md rounded-sm focus:outline focus:outline-offset-2 
-                        focus:outline-dark-blue" type="password" placeholder="password" 
-                        onChange={(e) => setPassword(e.target.value)}/>
-
-                        <button className="p-4 text-2xl font-bold bg-dark-blue 
-                        text-white rounded-sm shadow-md"
-                        onClick={handleAction}>Login</button>                 
-                    </div>
+                    <LoginForm setEmail={setEmail} setPassword={setPassword} handleAction={handleAction}/>
                 </div>  
             </div>
 

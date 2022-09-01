@@ -13,19 +13,14 @@ import {
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import bg from "./img/bg/hexa_back_01.png"
-import aronaTwelve from "./img/arona/Arona_P_12.png"
-import aronaTwentyNine from "./img/arona/Arona_P_29.png"
+import Alert from "./Components/Alert"
+
 function App() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
-  const [reTypePassword, setReTypePassword] = useState('')
 
-  const [emailAlreadyInUse, setEmailAlreadyInUse] = useState(false)
-  const [passwordDoesNotMatch, setPasswordDoesNotMatch] = useState(false)
-  
   const navigate = useNavigate()
 
   const handleAction = (id) => {
@@ -39,11 +34,11 @@ function App() {
         })
         .catch((error) => {
             if (error.code === 'auth/wrong-password'){
-                toast.error('From SCHALE HQ: Incorrect Password')
+                toast.error(<Alert type="error" text="Incorrect password!" />, {autoClose: 3000})
                 return
             }
             if (error.code === 'auth/user-not-found'){
-                toast.error('From SCHALE HQ: Email does not exist')
+                toast.error(<Alert type="error" text="Email does not exist!" />, {autoClose: 3000})
                 return
             }
             else{
@@ -51,20 +46,13 @@ function App() {
             }
 
         })
-
-        toast.info(
-                <div className="flex gap-x-2 text-sm">
-                <img className="h-16" src={aronaTwentyNine} alt="" />
-                <span>From SCHALE HQ: <span className="text-blue
-                font-medium">Pagod na ang ferson!</span></span></div>,
-                {autoClose: 3000}
-            )
+        
+        toast.info(<Alert type="info" text="Welcome to MomoTalk!" />, {autoClose: 3000})
         navigate("/home")
         
 
     }
     if (id === 2){
-        if (password === reTypePassword){
             createUserWithEmailAndPassword(authentication, email, password)
             .then((response) => {
                 sessionStorage('Auth Token', 
@@ -72,28 +60,18 @@ function App() {
             })
             .catch((error) => {
                 if (error.code === 'auth/email-already-in-use'){
-                    setEmailAlreadyInUse(true)
-                    toast.error('From SCHALE HQ: Email already in use!')
+                    toast.error(<Alert type="error" text="Email already in use!" />, {autoClose: 3000})
                     return
                 }
             })
 
-            toast.info(
-                <div className="flex gap-x-2 text-sm">
-                <img className="h-16" src={aronaTwelve} alt="" />
-                <span>From SCHALE HQ: <span className="text-blue
-                font-medium">Account created successfully!</span></span></div>,
-                {autoClose: 3000}
-            )
+                toast.success(<Alert type="success" text="Account created successfully!" />, {autoClose: 3000})
                 navigate("/login")
 
         } 
         else {
-            toast.error('From SCHALE HQ: Passwords does not match')
+            toast.error(<Alert type="error" text="Password does not match!" />, {autoClose: 3000})
         }
-       
-    }
-
   }
 
 
@@ -101,23 +79,6 @@ function App() {
     //let authToken = sessionStorage.getItem('Auth Token')
     //if (authToken){navigate("/home")}
   //})
-
-
-  useEffect(() => {
-    if (password !== reTypePassword){
-        setPasswordDoesNotMatch(true)
-    }
-    else{
-        setPasswordDoesNotMatch(false)
-    }
-  }, [password, reTypePassword])
-
- 
-  useEffect(() => {
-    setEmailAlreadyInUse(false) 
- }, [email])
-
-
   const bgCover = {
     backgroundImage: `url(${bg})`,
     height: "100%",
@@ -126,9 +87,6 @@ function App() {
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover"
   }
-
-
-
 
   return (
     <div style={bgCover}>
@@ -149,9 +107,6 @@ function App() {
                         bgCover={bgCover}
                         setEmail={setEmail}
                         setPassword={setPassword}
-                        setReTypePassword={setReTypePassword}
-                        emailAlreadyInUse={emailAlreadyInUse}
-                        passwordDoesNotMatch={passwordDoesNotMatch}
                         handleAction={() => handleAction(2)}
                     />}
                 />
